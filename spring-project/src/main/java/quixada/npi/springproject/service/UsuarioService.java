@@ -14,7 +14,7 @@ public interface UsuarioService {
     
     Usuario saveUser(Usuario usuario);
 
-	Optional<Usuario> findById(Integer id);
+	Usuario findById(Integer id);
 
 	void delete(Usuario usuario);
     

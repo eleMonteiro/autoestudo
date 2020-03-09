@@ -1,7 +1,6 @@
 package quixada.npi.springproject.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,30 +29,29 @@ public class UsuarioController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Usuario>> find(@PathVariable Integer id) {
+    public ResponseEntity<Usuario> find(@PathVariable Integer id) {
         return ResponseEntity.ok(usuarioService.findById(id));
     }
 
     @PostMapping("/cadastro")
     public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
+        usuario.setId(usuarioService.findAll().size()+10);
         return ResponseEntity.ok(usuarioService.saveUser(usuario));
     }
 
     @PutMapping("/editar/{id}")
     public ResponseEntity<Usuario> update(@PathVariable Integer id, @RequestBody Usuario usuario){
-    	Usuario user = usuarioService.findById(id).get();
-    	user.setEmail(usuario.getEmail());
-    	user.setNome(usuario.getNome());
-    	user.setHabilitado(usuario.isHabilitado());
-    	
-    	return ResponseEntity.ok(usuarioService.saveUser(user));
+    	Usuario user = usuarioService.findById(usuario.getId());
+    	return ResponseEntity.ok(usuarioService.saveUser(usuario));
     }
     
     @DeleteMapping("/excluir/{id}")
-    public void delete(@PathVariable Integer id){
-    	Usuario usuario = usuarioService.findById(id).get();
-    	usuarioService.delete(usuario);
-    	ResponseEntity.ok().build();
+    public void delete(@PathVariable Integer id) {
+        Usuario usuario = usuarioService.findById(id);
+
+        if (!usuario.isHabilitado()) {
+            usuarioService.delete(usuario);
+            ResponseEntity.ok().build();
+        }
     }
-    
 }

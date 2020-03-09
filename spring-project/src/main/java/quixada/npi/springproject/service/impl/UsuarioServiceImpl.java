@@ -23,7 +23,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     
     @Override
     public List<Usuario> findAll() {
-        return usuarioRepository.findAll();
+    	return usuarioRepository.findAll();
     }
 
 	@Override
@@ -33,8 +33,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public Optional<Usuario> findById(Integer id) {
-		return usuarioRepository.findById(id);
+	public Usuario findById(Integer id) {
+		return usuarioRepository.findById(id).get();
 	}
 
 	@Override

@@ -1,7 +1,8 @@
 import store from '../store'
 import LoginPage from '../views/Login'
 import Home from '../views/Home'
-import Cadastro from '../views/Cadastro'
+import Cadastro from '../views/usuario/Cadastro'
+import Editar from '../views/usuario/Editar'
 
 export default [
 
@@ -16,6 +17,11 @@ export default [
         path: '/cadastro',
         name: 'Cadastro',
         component: Cadastro
+    },
+    {
+        path: '/editar',
+        name: 'Editar',
+        component: Editar
     },
     {
         path: '/login',

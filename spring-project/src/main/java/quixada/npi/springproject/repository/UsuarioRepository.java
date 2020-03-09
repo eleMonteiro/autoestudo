@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Usuario findByEmail(String email);
-    
+
     Optional<Usuario> findById(Integer id);
 
     @Query("SELECT new Usuario(u.id, u.nome, u.email, u.habilitado) FROM Usuario u")

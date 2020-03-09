@@ -80,7 +80,7 @@ const getters = {
 
     isValidDateToken(state) {
         const MINUTOS_VALIDADE_TOKEN = 60;
-        const minutos = parseInt(((new Date() - state.token_update_date) / 1000) / 60);
+        const minutos = parseInt(((new Date() - state.token_update_date) / 10) / 60);
         return minutos < MINUTOS_VALIDADE_TOKEN;
     },
 

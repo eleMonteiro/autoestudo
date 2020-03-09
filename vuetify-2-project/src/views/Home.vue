@@ -21,7 +21,7 @@
                     <td class="text-left">{{ usuario.email }}</td>
                     <td class="text-left">{{ usuario.habilitado }}</td>
                     <td>
-                      <v-btn :id="usuario.id"  fab small dark color="green">
+                      <v-btn :id="usuario.id" @click="editar(usuario)" fab small dark color="green">
                         <v-icon>mdi-pencil</v-icon>
                       </v-btn>
                       <v-btn :id="usuario.id" @click="excluir(usuario.id)" fab dark small color="red">
@@ -50,6 +50,8 @@
 // @ is an alias to /src
 import VCardWidget from "@/components/VWidget";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
+import user from "../store/modules/user";
+
 const usuarioRepo = RepositoryFactory.get("usuario");
 
 export default {
@@ -59,7 +61,7 @@ export default {
   },
 
   data: () => ({
-    usuarios: []
+    usuarios: [],
   }),
 
   created() {
@@ -78,8 +80,11 @@ export default {
       this.$router.push("/cadastro");
     },
     excluir(id){
-      his.$store.dispatch("user/excluir", id)
-                .then(() => {});
+      this.$store.dispatch("user/excluir", id);
+    },
+    editar(usuario){
+        user.state.usuario = usuario;
+        this.$router.push("/editar");
     }
   }
 };

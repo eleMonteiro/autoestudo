@@ -5,11 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -35,6 +31,10 @@ public class Usuario implements UserDetails {
 	private String password;
 
 	private boolean habilitado;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="curso_id")
+	private Curso curso;
 
 	public Usuario() {}
 
