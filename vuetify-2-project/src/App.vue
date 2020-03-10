@@ -15,6 +15,12 @@
         <v-toolbar-items class="ml-3">
           <v-btn to="/" text>Início</v-btn>
         </v-toolbar-items>
+        <v-toolbar-items class="ml-3">
+          <v-btn to="/usuarios/listar" text>Usuario</v-btn>
+        </v-toolbar-items>
+        <v-toolbar-items class="ml-3">
+          <v-btn to="/cursos/listar" text>Curso</v-btn>
+        </v-toolbar-items>
 
         <v-spacer></v-spacer>
 

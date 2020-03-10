@@ -4,36 +4,36 @@ import auth from './auth';
 
 // state
 const state = {
-    usuario: ''
+    curso: ''
 };
 
 // actions
 const actions = {
-    cadastrar({ commit, dispatch }, userData) {
-        axios.post('usuarios/cadastrar', {
-                nome: userData.nome, 
-                email: userData.email, 
-                password: userData.password,
-                habilitado: userData.habilitado
+    cadastrar({ commit, dispatch }, cursoData) {
+        axios.post('cursos/cadastrar', {
+                nome: cursoData.nome, 
+                sigla: cursoData.sigla,
+                turno: {turno: cursoData.turno}
             }, { headers: {Authorization: auth.state.token }})
              .then(res => {commit('CLEAN')})
              .catch(error => console.log(error))
              .finally(() => resolve())
     },
-    editar({ commit, dispatch }, userData) {
-        axios.put(`usuarios/editar/${userData.id}`, {
-                id: userData.id,
-                nome: userData.nome, 
-                email: userData.email, 
-                password: userData.password,
-                habilitado: userData.habilitado
+    editar({ commit, dispatch }, cursoData) {
+        axios.put(`cursos/editar/${cursoData.id}`, {
+                id: cursoData.id,
+                nome: cursoData.nome, 
+                sigla: cursoData.sigla,
+                turno: {
+                    turno: cursoData.turno
+                }
             }, { headers: {Authorization: auth.state.token }})
              .then(res => {commit('CLEAN')})
              .catch(error => console.log(error))
              .finally(() => resolve())
     },
     excluir({commit, dispatch}, id){
-        axios.delete(`usuarios/deletar/${id}`,{headers: {Authorization: auth.state.token }})
+        axios.delete(`cursos/deletar/${id}`,{headers: {Authorization: auth.state.token }})
          .then(res => {})
          .catch(error => console.log(error))
          .finally(() => resolve())

@@ -6,12 +6,12 @@
         <v-form @submit.prevent="onSubmit" ref="form" lazy-validation v-model="valid">
           <v-container>
             <v-col cols="12" md="4">
-              <v-text-field v-model="usuario.id" disabled></v-text-field>
+              <v-text-field v-model="curso.id" disabled></v-text-field>
             </v-col>
             <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="usuario.nome"
+                  v-model="curso.nome"
                   :counter="10"
                   label="Nome"
                   required
@@ -19,27 +19,16 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field v-model="usuario.email" label="E-mail" required :rules="requiredRule"></v-text-field>
+                <v-text-field v-model="curso.sigla" label="Sigla" required :rules="requiredRule"></v-text-field>
               </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="usuario.password"
-                  type="password"
-                  label="Senha"
-                  required
-                  :rules="requiredRule"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-checkbox
-                  v-model="usuario.habilitado"
-                  :label="`Habilitar`"
-                  value="true"
-                ></v-checkbox>
+              <v-col class="d-flex" cols="12" md="4">
+                <v-select
+                  items="turnos"
+                  v-model="curso.turno"
+                  :aria-selected="curso.turno"
+                  label="Turnos"
+                  dense
+                ></v-select>
               </v-col>
             </v-row>
             <v-row>
@@ -58,9 +47,9 @@
 import VCardWidget from "@/components/VWidget";
 import { mapGetters, mapState } from "vuex";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
-import user from "../../store/modules/user";
+import cursoStore from "../../store/modules/curso";
 
-const usuarioRepo = RepositoryFactory.get("usuario");
+const usuarioRepo = RepositoryFactory.get("curso");
 
 export default {
   name: "Cadastro",
@@ -73,12 +62,12 @@ export default {
     loading: false,
     error: "",
     requiredRule: [v => !!v || "Campo obrigatório"],
-    usuario: {
-      id: user.state.usuario.id,
-      nome: user.state.usuario.nome,
-      email: user.state.usuario.email,
-      password: "",
-      habilitado: ""
+    turnos: ["Manhã", "Tarde", "Noite"],
+    curso: {
+      id: cursoStore.state.curso.id,
+      nome: cursoStore.state.curso.nome,
+      sigla: cursoStore.state.curso.sigla,
+      turno: cursoStore.state.curso.turno
     }
   }),
 
@@ -88,8 +77,8 @@ export default {
     onSubmit() {
       this.loading = true;
       if (this.$refs.form.validate()) {
-        this.$store.dispatch("user/editar", this.usuario).then(() => {
-          this.$router.push("/usuarioss/editar");
+        this.$store.dispatch("curso/editar", this.curso).then(() => {
+          this.$router.push("/cursos/editar");
         });
       }
 

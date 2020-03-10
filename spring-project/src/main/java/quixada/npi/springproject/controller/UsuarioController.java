@@ -33,7 +33,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.findById(id));
     }
 
-    @PostMapping("/cadastro")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
         usuario.setId(usuarioService.findAll().size()+10);
         return ResponseEntity.ok(usuarioService.saveUser(usuario));
@@ -42,10 +42,12 @@ public class UsuarioController {
     @PutMapping("/editar/{id}")
     public ResponseEntity<Usuario> update(@PathVariable Integer id, @RequestBody Usuario usuario){
     	Usuario user = usuarioService.findById(usuario.getId());
-    	return ResponseEntity.ok(usuarioService.saveUser(usuario));
+    	if( user != null)
+    		return ResponseEntity.ok(usuarioService.saveUser(usuario));
+    	return null;
     }
     
-    @DeleteMapping("/excluir/{id}")
+    @DeleteMapping("/deletar/{id}")
     public void delete(@PathVariable Integer id) {
         Usuario usuario = usuarioService.findById(id);
 

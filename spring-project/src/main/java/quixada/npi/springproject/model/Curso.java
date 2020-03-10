@@ -17,9 +17,9 @@ public class Curso {
     @NotEmpty
     private String sigla;
 
-    @NotEmpty
-    private String turno;
-
+    @Enumerated(EnumType.STRING)
+    private Turno turno;
+    
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Usuario> usuarios;
 
@@ -27,11 +27,11 @@ public class Curso {
 
     }
 
-    public Curso(String nome, String sigla, String turno) {
-        this.nome = nome;
-        this.sigla = sigla;
-        this.turno = turno;
-    }
+    public Curso( String nome, String sigla, Turno turno) {
+		this.nome = nome;
+		this.sigla = sigla;
+		this.turno = turno;
+	}   
 
     public Integer getId() {
         return id;
@@ -57,11 +57,12 @@ public class Curso {
         this.sigla = sigla;
     }
 
-    public String getTurno() {
-        return turno;
-    }
+	public Turno getTurno() {
+		return turno;
+	}
 
-    public void setTurno(String turno) {
-        this.turno = turno;
-    }
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	} 
+    
 }
