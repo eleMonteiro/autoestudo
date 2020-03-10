@@ -38,34 +38,34 @@ export default [
     /* Usuarios */
     {
         path: '/usuarios/cadastro',
-        name: 'Cadastro',
+        name: 'CadastroUsuario',
         component: CadastroUsuario
     },
     {
         path: '/usuarios/editar',
-        name: 'Editar',
+        name: 'EditarUsuario',
         component: EditarUsuario
     },
     {
         path: '/usuarios/listar',
-        name: 'Listar',
+        name: 'ListarUsuario',
         component: ListarUsuarios
     },
 
     /* Cursos */
     {
         path: '/cursos/cadastro',
-        name: 'Cadastro',
+        name: 'CadastroCurso',
         component: CadastroCurso
     },
     {
         path: '/cursos/editar',
-        name: 'Editar',
+        name: 'EditarCurso',
         component: EditarCurso
     },
     {
         path: '/cursos/listar',
-        name: 'Listar',
+        name: 'ListarCurso',
         component: ListarCursos
-    },
+    }
 ];

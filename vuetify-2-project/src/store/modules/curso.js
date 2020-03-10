@@ -13,9 +13,8 @@ const actions = {
         axios.post('cursos/cadastrar', {
                 nome: cursoData.nome, 
                 sigla: cursoData.sigla,
-                turno: {turno: cursoData.turno}
+                turno: cursoData.turno
             }, { headers: {Authorization: auth.state.token }})
-             .then(res => {commit('CLEAN')})
              .catch(error => console.log(error))
              .finally(() => resolve())
     },
@@ -24,17 +23,13 @@ const actions = {
                 id: cursoData.id,
                 nome: cursoData.nome, 
                 sigla: cursoData.sigla,
-                turno: {
-                    turno: cursoData.turno
-                }
+                turno: cursoData.turno                
             }, { headers: {Authorization: auth.state.token }})
-             .then(res => {commit('CLEAN')})
              .catch(error => console.log(error))
              .finally(() => resolve())
     },
     excluir({commit, dispatch}, id){
         axios.delete(`cursos/deletar/${id}`,{headers: {Authorization: auth.state.token }})
-         .then(res => {})
          .catch(error => console.log(error))
          .finally(() => resolve())
     }
@@ -47,9 +42,7 @@ const getters = {
 
 // mutations
 const mutations = {
-    CLEAN: (state) => {
-       
-    }
+   
 };
 
 export default {

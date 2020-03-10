@@ -5,7 +5,7 @@
       <div slot="widget-content">
         <v-row>
           <v-col cols="12">
-            <v-simple-table fixed-header height="350px">
+            <v-simple-table class="elevation" fixed-header height="350px">
               <template v-slot:default>
                 <thead>
                   <tr>
@@ -50,7 +50,7 @@
 // @ is an alias to /src
 import VCardWidget from "@/components/VWidget";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
-import user from "../../store/modules/user"
+import user from "../../store/modules/usuario";
 
 const usuarioRepo = RepositoryFactory.get("usuario");
 
@@ -59,32 +59,38 @@ export default {
   components: {
     VCardWidget
   },
+  props: {
+    usuarios: []
+  },
 
   data: () => ({
-    usuarios: [],
+    strBusca: "",
+    opcaoBusca: ""
   }),
 
   created() {
-    usuarioRepo
-      .getAll()
-      .then(res => {
-        this.usuarios = res.data;
-      })
-      .catch(console.error);
+      usuarioRepo.getAll()
+        .then(res => {
+          this.usuarios = res.data;
+        })
+        .catch(console.error);
   },
-
+  
   computed: {},
 
   methods: {
     redirect() {
       this.$router.push("/usuarios/cadastro");
     },
-    excluir(id){
+    excluir(id) {
       this.$store.dispatch("user/excluir", id);
     },
-    editar(usuario){
-        user.state.usuario = usuario;
-        this.$router.push("/editar");
+    editar(usuario) {
+      user.state.usuario = usuario;
+      this.$router.push("/usuarios/editar");
+    },
+    buscar() {
+        this.$store.dispatch("user/buscarPorId", this.strBusca);
     }
   }
 };

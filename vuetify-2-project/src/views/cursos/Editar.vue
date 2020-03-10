@@ -12,7 +12,6 @@
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="curso.nome"
-                  :counter="10"
                   label="Nome"
                   required
                   :rules="requiredRule"
@@ -23,7 +22,7 @@
               </v-col>
               <v-col class="d-flex" cols="12" md="4">
                 <v-select
-                  items="turnos"
+                  :items="turnos"
                   v-model="curso.turno"
                   :aria-selected="curso.turno"
                   label="Turnos"

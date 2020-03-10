@@ -58,7 +58,7 @@
 import VCardWidget from "@/components/VWidget";
 import { mapGetters, mapState } from "vuex";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
-import user from "../../store/modules/user";
+import user from "../../store/modules/usuario";
 
 const usuarioRepo = RepositoryFactory.get("usuario");
 

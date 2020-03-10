@@ -29,6 +29,14 @@
                   :rules="requiredRule"
                 ></v-text-field>
               </v-col>
+              <v-col cols="12" md="4">
+                <v-text-field
+                  v-model="usuario.curso.id"
+                  label="Curso"
+                  required
+                  :rules="requiredRule"
+                ></v-text-field>
+              </v-col>
             </v-row>
             <v-row>
               <v-col cols="12" md="4">
@@ -36,8 +44,6 @@
                   v-model="usuario.habilitado"
                   :label="`Habilitar`"
                   value="true"
-                  required
-                  :rules="requiredRule"
                 ></v-checkbox>
               </v-col>
             </v-row>
@@ -71,7 +77,7 @@ export default {
       v => v => !!v || "Campo obrigatório",
       v => /.+@.+\..+/.test(v) || "E-mail inválido"
     ],
-    usuario: { nome: "", email: "", password: "", habilitado: "" }
+    usuario: { nome: "", email: "", password: "", habilitado: "", curso: { id: "" } }
   }),
 
   computed: {},

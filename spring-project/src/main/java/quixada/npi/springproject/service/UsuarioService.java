@@ -17,5 +17,7 @@ public interface UsuarioService {
 	Usuario findById(Integer id);
 
 	void delete(Usuario usuario);
+
+	List<Usuario> findByCursoId(Integer id);
     
 }

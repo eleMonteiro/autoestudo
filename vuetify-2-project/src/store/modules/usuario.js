@@ -4,19 +4,19 @@ import auth from './auth';
 
 // state
 const state = {
-    usuario: ''
+    usuario: '',
 };
 
 // actions
 const actions = {
     cadastrar({ commit, dispatch }, userData) {
-        axios.post('usuarios/cadastrar', {
+        axios.post('usuarios/cadastrar', { 
                 nome: userData.nome, 
                 email: userData.email, 
                 password: userData.password,
-                habilitado: userData.habilitado
-            }, { headers: {Authorization: auth.state.token }})
-             .then(res => {commit('CLEAN')})
+                habilitado: userData.habilitado, 
+                curso: userData.curso
+                }, { headers: {Authorization: auth.state.token }})
              .catch(error => console.log(error))
              .finally(() => resolve())
     },
@@ -28,13 +28,11 @@ const actions = {
                 password: userData.password,
                 habilitado: userData.habilitado
             }, { headers: {Authorization: auth.state.token }})
-             .then(res => {commit('CLEAN')})
              .catch(error => console.log(error))
              .finally(() => resolve())
     },
     excluir({commit, dispatch}, id){
         axios.delete(`usuarios/deletar/${id}`,{headers: {Authorization: auth.state.token }})
-         .then(res => {})
          .catch(error => console.log(error))
          .finally(() => resolve())
     }
@@ -47,9 +45,7 @@ const getters = {
 
 // mutations
 const mutations = {
-    CLEAN: (state) => {
-       
-    }
+    
 };
 
 export default {

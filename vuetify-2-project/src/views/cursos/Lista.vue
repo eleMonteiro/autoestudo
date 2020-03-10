@@ -50,7 +50,7 @@
 // @ is an alias to /src
 import VCardWidget from "@/components/VWidget";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
-import curso from "../../store/modules/curso"
+import curs from "../../store/modules/curso"
 
 const cursoRepository = RepositoryFactory.get("curso");
 
@@ -60,8 +60,12 @@ export default {
     VCardWidget
   },
 
-  data: () => ({
+  props: {
     cursos: [],
+  },
+
+  data: () => ({
+    
   }),
 
   created() {
@@ -82,8 +86,8 @@ export default {
     excluir(id){
       this.$store.dispatch("curso/excluir", id);
     },
-    editar(usuario){
-        user.state.curso = curso;
+    editar(curso){
+        curs.state.curso = curso;
         this.$router.push("/cursos/editar");
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <v-card-widget enableActions :title="'Cadastro Usuário'">
+  <v-card-widget enableActions :title="'Cadastro Curso'">
     <div slot="widget-header-action"></div>
     <div slot="widget-content">
       <template>
@@ -9,7 +9,6 @@
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="curso.nome"
-                  :counter="10"
                   label="Nome"
                   required
                   :rules="requiredRule"
@@ -57,7 +56,7 @@ export default {
     loading: false,
     error: "",
     requiredRule: [v => !!v || "Campo obrigatório"],
-    turnos: ["Manhã", "Tarde", "Noite"],
+    turnos: ["Manha", "Tarde", "Noite"],
     curso: { nome: "", sigla: "", turno: "" }
   }),
 
@@ -66,9 +65,10 @@ export default {
   methods: {
     onSubmit() {
       this.loading = true;
-      if (this.$refs.form.validate()) {
-        this.$store.dispatch("curso/cadastrar", this.curso).then(() => {
-          this.$router.push("/");
+
+        if (this.$refs.form.validate()) {
+          this.$store.dispatch("curso/cadastrar", this.curso).then(() => {
+          this.$router.push("/cursos/listar");
         });
       }
       this.loading = false;

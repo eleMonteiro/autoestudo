@@ -16,6 +16,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Optional<Usuario> findById(Integer id);
 
+    List<Usuario> findByCursoId(Integer id);
+
     @Query("SELECT new Usuario(u.id, u.nome, u.email, u.habilitado) FROM Usuario u")
     List<Usuario> findAll();
 

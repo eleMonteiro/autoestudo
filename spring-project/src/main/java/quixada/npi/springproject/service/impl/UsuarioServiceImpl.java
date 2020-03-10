@@ -42,4 +42,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioRepository.delete(usuario);;
 	}
 
+	@Override
+	public List<Usuario> findByCursoId(Integer id) {
+		return usuarioRepository.findByCursoId(id);
+	}
+
 }

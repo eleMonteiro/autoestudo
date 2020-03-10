@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import quixada.npi.springproject.model.Curso;
+import quixada.npi.springproject.model.Usuario;
 import quixada.npi.springproject.service.CursoService;
+import quixada.npi.springproject.service.UsuarioService;
 
 @RestController
 @RequestMapping("/cursos")

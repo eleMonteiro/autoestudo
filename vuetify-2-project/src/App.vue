@@ -62,15 +62,15 @@ export default {
   name: "App",
 
   data: () => ({
-    nome: auth.state.nome
+    nome: localStorage.getItem("nome")
   }),
 
   created() {},
 
   methods: {
     logout() {
-      this.$store.dispatch("auth/login");
-      this.$router.push('/')
+      // this.$store.dispatch("auth/login");
+      this.$router.push('/logout')
     }
   }
 };
