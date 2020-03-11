@@ -57,20 +57,25 @@
 <script>
 import axios from "axios";
 import auth from "./store/modules/auth";
+import app from "./store/modules/app"
 
 export default {
   name: "App",
 
+
   data: () => ({
-    nome: localStorage.getItem("nome")
+    nome: ''
   }),
 
-  created() {},
+  created() {
+    this.nome = app.getters.GET_USUARIO()
+  },
 
   methods: {
     logout() {
-      // this.$store.dispatch("auth/login");
-      this.$router.push('/logout')
+      this.$store.dispatch("auth/logout")
+      this.$router.push("/login")
+      localStorage.clear()
     }
   }
 };

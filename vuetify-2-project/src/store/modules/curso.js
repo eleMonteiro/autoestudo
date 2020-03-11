@@ -1,7 +1,6 @@
 import axios from 'axios'
 import auth from './auth';
 
-
 // state
 const state = {
     curso: ''
@@ -37,12 +36,16 @@ const actions = {
 
 // getters
 const getters = {
-
+    getCurso(state){
+        return state.curso;
+    }
 };
 
 // mutations
 const mutations = {
-   
+    setCurso(state, curso){
+        state.curso = curso;
+    }
 };
 
 export default {

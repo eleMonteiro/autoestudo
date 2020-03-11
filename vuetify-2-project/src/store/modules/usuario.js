@@ -21,7 +21,7 @@ const actions = {
              .finally(() => resolve())
     },
     editar({ commit, dispatch }, userData) {
-        axios.put(`usuarios/editar/${userData.id}`, {
+        axios.put(`usuarios/${userData.id}`, {
                 id: userData.id,
                 nome: userData.nome, 
                 email: userData.email, 
@@ -32,7 +32,7 @@ const actions = {
              .finally(() => resolve())
     },
     excluir({commit, dispatch}, id){
-        axios.delete(`usuarios/deletar/${id}`,{headers: {Authorization: auth.state.token }})
+        axios.delete(`usuarios/${id}`,{headers: {Authorization: auth.state.token }})
          .catch(error => console.log(error))
          .finally(() => resolve())
     }
@@ -40,7 +40,9 @@ const actions = {
 
 // getters
 const getters = {
-
+    getUsuarios(){
+        return usuario;
+    }
 };
 
 // mutations

@@ -38,10 +38,10 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.findAll());
     }
 
-    @GetMapping("/buscaId/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Object> find(@PathVariable Integer id) {
         Map<Object, Object> model = new HashMap<>();
-        model.put("usuarios", usuarioService.findById(id));
+        model.put("usuarios",usuarioService.findById(id));
         return ok(model);
     }
 
@@ -51,7 +51,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.saveUser(usuario));
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Usuario> update(@PathVariable Integer id, @RequestBody Usuario usuario){
     	Usuario user = usuarioService.findById(usuario.getId());
     	if( user != null)
@@ -59,7 +59,7 @@ public class UsuarioController {
     	return null;
     }
     
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("{id}")
     public void delete(@PathVariable Integer id) {
         Usuario usuario = usuarioService.findById(id);
         if (!usuario.isHabilitado()) {

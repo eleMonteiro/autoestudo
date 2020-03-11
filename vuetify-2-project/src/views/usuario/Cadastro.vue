@@ -88,7 +88,7 @@ export default {
 
       if (this.$refs.form.validate()) {
         this.$store.dispatch("user/cadastrar", this.usuario).then(() => {
-          this.$router.push("/");
+          this.$router.push("/usuarios/listar");
         });
       }
 

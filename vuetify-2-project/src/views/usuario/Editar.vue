@@ -89,7 +89,7 @@ export default {
       this.loading = true;
       if (this.$refs.form.validate()) {
         this.$store.dispatch("user/editar", this.usuario).then(() => {
-          this.$router.push("/usuarioss/editar");
+          this.$router.push("/usuarios/listar");
         });
       }
 

@@ -10,12 +10,7 @@
             </v-col>
             <v-row>
               <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="curso.nome"
-                  label="Nome"
-                  required
-                  :rules="requiredRule"
-                ></v-text-field>
+                <v-text-field v-model="curso.nome" label="Nome" required :rules="requiredRule"></v-text-field>
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field v-model="curso.sigla" label="Sigla" required :rules="requiredRule"></v-text-field>
@@ -44,7 +39,7 @@
     
 <script>
 import VCardWidget from "@/components/VWidget";
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapState, mapMutations } from "vuex";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
 import cursoStore from "../../store/modules/curso";
 
@@ -62,27 +57,32 @@ export default {
     error: "",
     requiredRule: [v => !!v || "Campo obrigatório"],
     turnos: ["Manhã", "Tarde", "Noite"],
-    curso: {
-      id: cursoStore.state.curso.id,
-      nome: cursoStore.state.curso.nome,
-      sigla: cursoStore.state.curso.sigla,
-      turno: cursoStore.state.curso.turno
-    }
+    curso: { id: "", nome: "", sigla: "", turno: "" },
   }),
 
-  computed: {},
+  computed: {
+    ...mapGetters({
+      cursoStore: 'curso/getCurso'
+    })
+  },
 
   methods: {
     onSubmit() {
       this.loading = true;
       if (this.$refs.form.validate()) {
-        this.$store.dispatch("curso/editar", this.curso).then(() => {
-          this.$router.push("/cursos/editar");
+          this.$store.dispatch("curso/editar", this.curso).then(() => {
+          this.$router.push("/cursos/listar");
         });
       }
 
       this.loading = false;
     }
+  },
+
+  mounted() {
+    this.curso = this.cursoStore
+    console.log(this.cursoStore)
   }
+
 };
 </script>

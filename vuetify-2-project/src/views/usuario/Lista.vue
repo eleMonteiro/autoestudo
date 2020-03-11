@@ -59,16 +59,14 @@ export default {
   components: {
     VCardWidget
   },
-  props: {
-    usuarios: []
-  },
 
   data: () => ({
+    usuarios: [],
     strBusca: "",
     opcaoBusca: ""
   }),
 
-  created() {
+  mounted() {
       usuarioRepo.getAll()
         .then(res => {
           this.usuarios = res.data;
@@ -84,13 +82,11 @@ export default {
     },
     excluir(id) {
       this.$store.dispatch("user/excluir", id);
+      this.usuarios.splice(1,id)
     },
     editar(usuario) {
       user.state.usuario = usuario;
       this.$router.push("/usuarios/editar");
-    },
-    buscar() {
-        this.$store.dispatch("user/buscarPorId", this.strBusca);
     }
   }
 };

@@ -35,14 +35,10 @@ const actions = {
 
     logout() {
         return new Promise((resolve, reject) => {
-            axios.post('/logout')
-                .then(res => {
-                    localStorage.setItem('token', null)
-                    localStorage.setItem('token_update_date', null)
-                    localStorage.setItem('nome', null)
-                })
-                .catch(error => console.log(error))
-                .finally(() => resolve())
+            axios.post('/logout',{ headers: {Authorization: auth.state.token }})
+                 .then(localStorage.clear())
+                 .catch(error => console.log(error))
+                 .finally(() => resolve())
         })
     },
 
@@ -80,7 +76,7 @@ const getters = {
 
     isValidDateToken(state) {
         const MINUTOS_VALIDADE_TOKEN = 60;
-        const minutos = parseInt(((new Date() - state.token_update_date) / 10) / 60);
+        const minutos = parseInt(((new Date() - state.token_update_date) / 1000) / 60);
         return minutos < MINUTOS_VALIDADE_TOKEN;
     },
 

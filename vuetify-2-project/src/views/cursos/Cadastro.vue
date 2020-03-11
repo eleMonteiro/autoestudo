@@ -65,7 +65,6 @@ export default {
   methods: {
     onSubmit() {
       this.loading = true;
-
         if (this.$refs.form.validate()) {
           this.$store.dispatch("curso/cadastrar", this.curso).then(() => {
           this.$router.push("/cursos/listar");

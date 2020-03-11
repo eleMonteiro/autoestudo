@@ -6,6 +6,7 @@
         Para mostrar uma mensagem de erro:
             this.$store.dispatch("app/putError", "MENSAGEM DE ERRO A SER EXIBIDA!")
 */
+
 const state = {
     messages: {
         error: "",
@@ -34,6 +35,9 @@ const getters = {
     },
     GET_INFO(state) {
         return state.messages.info
+    },
+    GET_USUARIO(){
+        return localStorage.getItem("nome")
     }
 }
 

@@ -20,6 +20,8 @@ import quixada.npi.springproject.config.JwtTokenProvider;
 import quixada.npi.springproject.model.Usuario;
 import quixada.npi.springproject.repository.UsuarioRepository;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class AuthenticationController {
 
@@ -48,6 +50,11 @@ public class AuthenticationController {
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Usuário e/ou senha inválidos");
         }
+    }
+
+    @PostMapping("/logout")
+    public void logout(HttpSession session) {
+        session.invalidate();
     }
     
 }
